@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const app = express();
 const pool = require('./config/db');
 const swaggerUi = require('swagger-ui-express');
@@ -18,23 +19,29 @@ const swaggerOptions = {
       version: '1.0.0',
       description: 'API para gerenciamento de funcionários',
     },
-    servers: [{ url: `http://localhost:${process.env.PORT || 3000}` }],
+    servers: [{ 
+      url: `http://localhost:${process.env.PORT || 3000}`,
+      description: 'Servidor local' 
+    }],
   },
-  apis: ['./routes/*.js'],
+  apis: [path.join(__dirname, 'routes', '*.js')],
 };
 
-const swaggerSpec = swaggerJsdoc(swaggerOptions);
+const swaggerSpec = swaggerJsdoc(swaggerOptions); // CORREÇÃO AQUI
+
+// DEBUG
+console.log('Rotas documentadas:', Object.keys(swaggerSpec.paths));
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Rota de teste
+// Rotas
 app.get('/', (req, res) => {
   res.send('API Funcionários Online! Acesse /api-docs para documentação.');
 });
 
-// Rotas de funcionários 
 app.use('/funcionarios', funcionariosRoutes);
 
-// Iniciar servidor 
+// Iniciar servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);

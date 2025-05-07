@@ -20,6 +20,7 @@ const options = {
 };
 
 const specs = swaggerJsdoc(options);
+console.log('Arquivos analisados:', specs.apis);
 
 module.exports = (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
