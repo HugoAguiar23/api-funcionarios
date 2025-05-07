@@ -1,19 +1,29 @@
 {
   "name": "projeto-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API para gestão de funcionários",
+  "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "api",
+    "funcionarios",
+    "nodejs"
+  ],
+  "author": "Seu Nome",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
