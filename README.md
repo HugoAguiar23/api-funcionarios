@@ -15,6 +15,12 @@ Acesse a documentação Swagger UI:
    ```bash
    node app.js
    ```
+   
+## Como Usar a Documentação
+
+Acesse: http://localhost:3000/api-docs
+- Teste os endpoints diretamente na interface Swagger
+- Exemplos de requests/responses estão disponíveis   
 
 ## 🌟 Como Contribuir
 1. Faça um *fork* deste repositório

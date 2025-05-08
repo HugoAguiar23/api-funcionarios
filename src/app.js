@@ -19,18 +19,34 @@ const swaggerOptions = {
       version: '1.0.0',
       description: 'API para gerenciamento de funcionários',
     },
-    servers: [{ 
+    servers: [{
       url: `http://localhost:${process.env.PORT || 3000}`,
-      description: 'Servidor local' 
+      description: 'Servidor local'
     }],
+    components: {
+      schemas: {
+        Funcionario: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer', example: 1 },
+            nome: { type: 'string', example: 'João Silva' },
+            cargo: { type: 'string', example: 'Desenvolvedor' },
+            salario: { type: 'number', format: 'float', example: 5000.00 }
+          }
+        },
+        ErrorResponse: {
+          type: 'object',
+          properties: {
+            error: { type: 'string', example: 'Mensagem de erro' }
+          }
+        }
+      }
+    }
   },
   apis: [path.join(__dirname, 'routes', '*.js')],
 };
 
-const swaggerSpec = swaggerJsdoc(swaggerOptions); // CORREÇÃO AQUI
-
-// DEBUG
-console.log('Rotas documentadas:', Object.keys(swaggerSpec.paths));
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -40,6 +56,12 @@ app.get('/', (req, res) => {
 });
 
 app.use('/funcionarios', funcionariosRoutes);
+
+// Middleware de Erro
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Erro interno do servidor' });
+});
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3000;
