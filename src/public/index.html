@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestão de Funcionários</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Controle de Funcionários</h1>
+    
+    <!-- Formulário -->
+    <div class="form-section">
+      <h2>Adicionar/Editar Funcionário</h2>
+      <form id="funcionarioForm">
+        <div class="form-row">
+          <input type="text" id="nome" placeholder="Nome" required>
+          <input type="text" id="cargo" placeholder="Cargo" required>
+          <input type="number" id="salario" placeholder="Salário" step="0.01" required>
+          <div class="form-actions">
+            <button type="submit">Salvar</button>
+            <button type="button" id="cancelar">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Tabela -->
+    <div class="table-section">
+      <h2>Funcionários Cadastrados</h2>
+      <table id="tabelaFuncionarios">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Salário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-hidden"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

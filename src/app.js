@@ -9,6 +9,7 @@ const funcionariosRoutes = require('./routes/funcionariosRoutes');
 
 // Middlewares
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Configuração do Swagger
 const swaggerOptions = {
@@ -52,7 +53,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Rotas
 app.get('/', (req, res) => {
-  res.send('API Funcionários Online! Acesse /api-docs para documentação.');
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // ✅ Agora serve a interface!
 });
 
 app.use('/funcionarios', funcionariosRoutes);
@@ -68,4 +69,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
   console.log(`Documentação Swagger: http://localhost:${PORT}/api-docs`);
+  
 });
