@@ -21,7 +21,7 @@ const validarFuncionario = (nome, cargo, salario) => {
 
 module.exports = {
   /**
-   * Cria um novo funcionário com validação aprimorada
+   * Cria um novo funcionário com validação 
    */
   async criarFuncionario(req, res) {
     try {

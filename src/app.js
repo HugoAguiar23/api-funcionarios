@@ -53,7 +53,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Rotas
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html')); // ✅ Agora serve a interface!
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); 
 });
 
 app.use('/funcionarios', funcionariosRoutes);
